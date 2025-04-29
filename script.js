@@ -138,3 +138,163 @@ startGame();
 
 // Event listener
 resetButton.addEventListener("click", resetGame);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Join Game</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #ffffff;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    .join-group {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      display: inline-block;
+    }
+
+    input, select, button {
+      font-size: 18px;
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    input, select {
+      background-color: #2a2a40;
+      color: white;
+    }
+
+    button {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Join the Game</h1>
+  <div class="join-group">
+    <input type="text" id="playerName" placeholder="Enter your name" />
+    <select id="language">
+      <option value="English">English</option>
+      <option value="Spanish">Spanish</option>
+      <option value="French">French</option>
+    </select>
+    <button onclick="joinGame()">Join Game</button>
+  </div>
+
+  <script>
+    function joinGame() {
+      const name = document.getElementById('playerName').value;
+      const lang = document.getElementById('language').value;
+      const urlParams = new URLSearchParams(window.location.search);
+      const sessionId = window.location.pathname.split('/').pop();
+
+      if (!name) {
+        alert("Please enter your name.");
+        return;
+      }
+
+      alert(Joining game: ${sessionId} as ${name} (${lang}));
+      // Send info to the backend or connect via WebSocket here
+    }
+  </script>
+</body>
+</html>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding-top: 100px;
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+    color: #ffffff;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  h1 {
+    font-size: 56px;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #00dbde, #fc00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .input-group {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    margin-bottom: 30px;
+    display: inline-block;
+  }
+
+  input, select, button {
+    font-size: 18px;
+    padding: 12px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+  }
+
+  input, select {
+    background-color: #2a2a40;
+    color: white;
+  }
+
+  button {
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+</style>
+*function playGame() {
+  const name = document.getElementById('playerName').value;
+  const lang = document.getElementById('language').value;
+  alert(Playing as ${name} in ${lang});
+  // Add game start logic here
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game Lobby</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #ffffff;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h1 {
+      font-size: 56px;
+      margin-bottom: 40px;
+      background: linear-gradient(90deg, #00dbde, #fc00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .input-group, .join-group {
+      background-color: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      margin-bottom: 30px;
+      display: inline-block;
+    }
+
+    input, button {
+      font-size: 18px;
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      background-color: #2a2a40;
+      color: white;
+    }
+
+    button {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Create Game</h1>
+  <div class="input-group">
+    <input type="text" id="playerName" placeholder="Enter your name" />
+    <button onclick="createServer()">Create New Server</button>
+  </div>
+
+  <div id="serverLink" style="margin-top: 20px;"></div>
+
+  <h1>Join the Game</h1>
+  <div class="join-group">
+    <input type="text" id="joinPlayerName" placeholder="Enter your name" />
+    <button onclick="joinGame()">Join Game</button>
+  </div>
+
+  <script>
+    function generateUniqueLink() {
+      const uniqueId = Math.random().toString(36).substring(2, 10);
+      return https://yourgame.com/join/${uniqueId};
+    }
+
+    function createServer() {
+      const name = document.getElementById('playerName').value;
+
+      if (!name) {
+        alert("Please enter your name.");
+        return;
+      }
+
+      const serverURL = generateUniqueLink();
+      document.getElementById('serverLink').innerHTML = `
+        <h3>Server Created!</h3>
+        <p>Share this link with up to 3 friends (4 players max):</p>
+        <input type="text" value="${serverURL}" readonly style="width: 80%; padding: 10px; background-color: #2a2a40; color: #fff; border: none; border-radius: 8px;" />
+      `;
+
+      console.log(Game created by ${name}. Server URL: ${serverURL});
+    }
+
+    function joinGame() {
+      const name = document.getElementById('joinPlayerName').value;
+      const sessionId = window.location.pathname.split('/').pop();
+
+      if (!name) {
+        alert("Please enter your name.");
+        return;
+      }
+
+      alert(Joining game: ${sessionId} as ${name});
+      // Connection logic or WebSocket here
+    }
+  </script>
+</body>
+</html>
